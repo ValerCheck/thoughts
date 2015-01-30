@@ -2,9 +2,20 @@ $(function(){
 	Parse.$ = jQuery;
 
 	Parse.initialize("XWxp7IZCJsA0iFwSRdKVB3ngiixCDpAbA0Ae0tQy", "RAnIN8O7zAeBV9rqnMLmjVVtiUSxTeDgduNgwazC");
-	var TestObject = Parse.Object.extend("TestObject");
-	var testObject = new TestObject();
-	testObject.save({foo:"bar"}).then(function(object){
-		alert("yay! it worked");
-	})
+	
+	var Article = Parse.Object.extend("Article");
+	var Articles = Parse.Collection.extend({
+		model : Article
+	});
+
+	var articles = new Articles();
+	articles.fetch({
+		success: function(articles){
+			console.log(articles);
+		},
+		error: function(articles,error){
+			console.log(error);
+		}
+	});
+
 })
