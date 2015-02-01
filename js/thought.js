@@ -9,13 +9,24 @@ $(function(){
 	});
 
 	var articles = new Articles();
+
 	articles.fetch({
 		success: function(articles){
-			console.log(articles);
+			var articlesView = new ArticlesView({collection: articles});
+			articlesView.render();
+			$('.main-container').html(articlesView);
 		},
 		error: function(articles,error){
 			console.log(error);
 		}
 	});
+
+	var ArticlesView = Parse.View.extend({
+		template : Handlebars.compile($('#articles-tpl').html()),
+		render : function(){
+			var collection = {articles : this.collection.toJSON()};
+			this.$el.html(this.template(collection));
+		}
+	})
 
 })
