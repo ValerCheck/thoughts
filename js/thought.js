@@ -12,9 +12,10 @@ $(function(){
 
 	articles.fetch({
 		success: function(articles){
+			console.log(articles);
 			var articlesView = new ArticlesView({collection: articles});
 			articlesView.render();
-			$('.main-container').html(articlesView);
+			$('.main-container').html(articlesView.el);
 		},
 		error: function(articles,error){
 			console.log(error);
