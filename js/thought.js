@@ -24,7 +24,7 @@ $(function(){
 	var ArticlesView = Parse.View.extend({
 		template : Handlebars.compile($('#articles-tpl').html()),
 		render : function(){
-			var collection = {articles : this.collection.toJSON()};
+			var collection = {article : this.collection.toJSON()};
 			this.$el.html(this.template(collection));
 		}
 	})
